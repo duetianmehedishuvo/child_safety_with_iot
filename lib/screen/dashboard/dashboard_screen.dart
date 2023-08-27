@@ -24,7 +24,7 @@ class DashboardScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           title: Text(
-            'SMART Child Safety and security systems',
+            'IoT Based Child System and Monitoring System',
             style: sfProStyle400Regular.copyWith(fontSize: 14,color: Colors.white),
           ),
           centerTitle: true,
@@ -116,7 +116,7 @@ class DashboardScreen extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 10),
-          Text('HeartRate & oximeter :', style: sfProStyle600SemiBold.copyWith(fontSize: 16), textAlign: TextAlign.center),
+          Text('Heart-Rate & Oximeter :', style: sfProStyle600SemiBold.copyWith(fontSize: 16), textAlign: TextAlign.center),
           const Text('---------------------------------------------------------------------------------------------------',
               maxLines: 1, style: TextStyle(color: colorPrimary, wordSpacing: 2)),
           rowWidget(
@@ -163,7 +163,7 @@ class DashboardScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Start Range', style: sfProStyle500Medium.copyWith(fontSize: 15)),
+                            Text('Start Range', style: sfProStyle600SemiBold.copyWith(fontSize: 15)),
                             const SizedBox(width: 8),
                             const Icon(Icons.edit, color: Colors.green, size: 17)
                           ],
@@ -199,7 +199,7 @@ class DashboardScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('End Range', style: sfProStyle500Medium.copyWith(fontSize: 15)),
+                            Text('End Range', style: sfProStyle600SemiBold.copyWith(fontSize: 15)),
                             const SizedBox(width: 8),
                             const Icon(Icons.edit, color: Colors.green, size: 17)
                           ],
@@ -220,12 +220,14 @@ class DashboardScreen extends StatelessWidget {
           // SizedBox(height: 10),
           Container(height: 4, decoration: BoxDecoration(color: colorPrimary, borderRadius: BorderRadius.circular(10))),
           const SizedBox(height: 10),
-          Text('Child Detect Position:', style: sfProStyle700Bold.copyWith(fontSize: 16)),
+          Center(child: Text('Child Detect Position:', style: sfProStyle700Bold.copyWith(fontSize: 16))),
           const SizedBox(height: 4),
-          Text('${latLng.latitude}, ${latLng.longitude}', style: sfProStyle500Medium.copyWith(fontSize: 16)),
+          Center(child: Text('${latLng.latitude}, ${latLng.longitude}', style: sfProStyle500Medium.copyWith(fontSize: 16))),
           const SizedBox(height: 4),
-          Text(locationProvider.locationLists.isEmpty ? "Trying to find location..." : locationProvider.locationLists[0],
-              style: sfProStyle500Medium.copyWith(fontSize: 16)),
+          Center(
+            child: Text(locationProvider.locationLists.isEmpty ? "Trying to find location..." : locationProvider.locationLists[0],
+                style: sfProStyle500Medium.copyWith(fontSize: 16)),
+          ),
           const SizedBox(height: 10),
           Container(height: 4, decoration: BoxDecoration(color: colorPrimary, borderRadius: BorderRadius.circular(10))),
           Row(
@@ -242,7 +244,7 @@ class DashboardScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(4)),
                   child: Column(
                     children: [
-                      Text('Start Range', style: sfProStyle500Medium.copyWith(fontSize: 16)),
+                      Text('Start Range', style: sfProStyle600SemiBold.copyWith(fontSize: 16)),
                       const SizedBox(height: 5),
                       Text('Distance', style: sfProStyle500Medium.copyWith(fontSize: 16)),
                       const SizedBox(height: 5),
@@ -268,7 +270,7 @@ class DashboardScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(4)),
                   child: Column(
                     children: [
-                      Text('End Range', style: sfProStyle500Medium.copyWith(fontSize: 16)),
+                      Text('End Range', style: sfProStyle600SemiBold.copyWith(fontSize: 16)),
                       const SizedBox(height: 5),
                       Text('Distance', style: sfProStyle500Medium.copyWith(fontSize: 16)),
                       const SizedBox(height: 5),
@@ -301,10 +303,12 @@ Widget rowWidget(String title, String value, int index) {
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
     decoration: BoxDecoration(color: index % 2 == 0 ? colorGreenLight.withOpacity(.05) : colorGreenLight.withOpacity(.1)),
     child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(title, style: sfProStyle500Medium.copyWith(fontSize: 15)),
         const SizedBox(width: 10),
-        Expanded(child: Text(value, style: sfProStyle400Regular.copyWith(fontSize: 15))),
+        Text(value, style: sfProStyle400Regular.copyWith(fontSize: 15)),
       ],
     ),
   );
