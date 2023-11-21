@@ -25,7 +25,6 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-
   AudioPlayer? player;
 
   @override
@@ -35,26 +34,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
     initializePlayer();
   }
 
-  initializePlayer()async{
+  initializePlayer() async {
     player = AudioPlayer();
     await player!.setLoopMode(LoopMode.all);
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-            'IoT Based Child System and Monitoring System',
-            style: sfProStyle400Regular.copyWith(fontSize: 14,color: Colors.white),
-          ),
+          title: Text('IoT Based Child System and Monitoring System', style: sfProStyle400Regular.copyWith(fontSize: 14, color: Colors.white)),
           centerTitle: true,
           backgroundColor: colorPrimary),
       body: Consumer2<LocationProvider, WeatherProvider>(
         builder: (context, locationProvider, weatherProvider, child) => StreamBuilder(
             stream: MessageDao.messagesRef.onValue,
-            builder: (context, snapshot) {
+            builder: (c, snapshot) {
               if (snapshot.hasError) {
                 return Text(snapshot.error.toString());
               } else if (!snapshot.hasData || locationProvider.isLoading) {
@@ -75,50 +70,54 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 snapshot.data!.snapshot.child('Location').children.elementAt(5).value.toString(),
               );
 
-              print(snapshot.data!.snapshot.child('Danger'));
-
+              // print(snapshot.data!.snapshot.child('Danger'));
+              print('ssss');
               if (snapshot.data!.snapshot.child('Danger').value.toString() == '1') {
                 if (!player!.playing) {
                   player!.setAsset('assets/raw/alarm.mp3');
                   player!.play();
                 }
+
+
+                showMessage(message: 'Please contact with your child, he needed help !!!.', context: context);
               } else {
                 player!.stop();
               }
 
-              return ListView(
-                physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                children: [
-                  deviceOximiterResult(snapshot, context),
-                  const SizedBox(height: 15),
-                  userPositionWidget(snapshot, locationProvider, latLng),
-                  const SizedBox(height: 15),
-                  Center(
-                    child: innerButtonWidget(() {
+              return Builder(builder: (context) {
+                return ListView(
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  children: [
+                    deviceOximiterResult(snapshot, context),
+                    const SizedBox(height: 15),
+                    userPositionWidget(snapshot, locationProvider, latLng),
+                    const SizedBox(height: 15),
+                    Center(
+                        child: innerButtonWidget(() {
                       Helper.toScreen(PositionScreen(latLng));
-                    }, "Position Wise Weather & Humidity Response"),
-                  ),
-                  const SizedBox(height: 15),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      innerButtonWidget(() {
-                        Helper.toScreen(const PlacesScreen());
-                      }, "Nearest Place"),
-                      const SizedBox(width: 10),
-                      innerButtonWidget(() {
-                        Helper.toScreen(const HelplineNumberScreen());
-                      }, "Helpline"),
-                      const SizedBox(width: 10),
-                      innerButtonWidget(() {
-                        Helper.toScreen(const PhotosScreen());
-                      }, "Photos"),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                ],
-              );
+                    }, "Position Wise Weather & Humidity Response")),
+                    const SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        innerButtonWidget(() {
+                          Helper.toScreen(const PlacesScreen());
+                        }, "Nearest Place"),
+                        const SizedBox(width: 10),
+                        innerButtonWidget(() {
+                          Helper.toScreen(const HelplineNumberScreen());
+                        }, "Helpline"),
+                        const SizedBox(width: 10),
+                        innerButtonWidget(() {
+                          Helper.toScreen(const PhotosScreen());
+                        }, "Photos"),
+                      ],
+                    ),
+                    const SizedBox(height: 15),
+                  ],
+                );
+              });
             }),
       ),
     );
@@ -187,9 +186,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
                         color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(color: Colors.grey.withOpacity(.2), blurRadius: 10.0, spreadRadius: 3.0, offset: const Offset(0.0, 0.0))
-                        ],
+                        boxShadow: [BoxShadow(color: Colors.grey.withOpacity(.2), blurRadius: 10.0, spreadRadius: 3.0, offset: const Offset(0.0, 0.0))],
                         borderRadius: BorderRadius.circular(4)),
                     child: Column(
                       children: [
@@ -223,9 +220,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
                         color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(color: Colors.grey.withOpacity(.2), blurRadius: 10.0, spreadRadius: 3.0, offset: const Offset(0.0, 0.0))
-                        ],
+                        boxShadow: [BoxShadow(color: Colors.grey.withOpacity(.2), blurRadius: 10.0, spreadRadius: 3.0, offset: const Offset(0.0, 0.0))],
                         borderRadius: BorderRadius.circular(4)),
                     child: Column(
                       children: [
@@ -271,9 +266,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(color: Colors.grey.withOpacity(.2), blurRadius: 10.0, spreadRadius: 3.0, offset: const Offset(0.0, 0.0))
-                      ],
+                      boxShadow: [BoxShadow(color: Colors.grey.withOpacity(.2), blurRadius: 10.0, spreadRadius: 3.0, offset: const Offset(0.0, 0.0))],
                       borderRadius: BorderRadius.circular(4)),
                   child: Column(
                     children: [
@@ -297,9 +290,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(color: Colors.grey.withOpacity(.2), blurRadius: 10.0, spreadRadius: 3.0, offset: const Offset(0.0, 0.0))
-                      ],
+                      boxShadow: [BoxShadow(color: Colors.grey.withOpacity(.2), blurRadius: 10.0, spreadRadius: 3.0, offset: const Offset(0.0, 0.0))],
                       borderRadius: BorderRadius.circular(4)),
                   child: Column(
                     children: [

@@ -20,6 +20,8 @@ void main() async {
       projectId: "women-safety-93296",
     ),
   );
+
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
