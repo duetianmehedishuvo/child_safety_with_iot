@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:women_safety/util/theme/app_colors.dart';
 
-class SafeHervenAppBar extends StatelessWidget with PreferredSizeWidget {
+class SafeHervenAppBar extends StatelessWidget implements  PreferredSizeWidget {
   @override
   final Size preferredSize;
 

@@ -4,7 +4,6 @@ import 'package:women_safety/provider/auth_provider.dart';
 import 'package:women_safety/screen/auth/signup_screen.dart';
 import 'package:women_safety/screen/auth/widget/header_widget.dart';
 import 'package:women_safety/screen/dashboard/dashboard_screen.dart';
-import 'package:women_safety/screen/home/home_2_screen.dart';
 import 'package:women_safety/util/helper.dart';
 import 'package:women_safety/util/size.util.dart';
 import 'package:women_safety/util/theme/app_colors.dart';
@@ -12,7 +11,6 @@ import 'package:women_safety/util/theme/text.styles.dart';
 import 'package:women_safety/widgets/custom_button.dart';
 import 'package:women_safety/widgets/custom_text.dart';
 import 'package:women_safety/widgets/custom_text_field.dart';
-import 'package:women_safety/widgets/snackbar_message.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);

@@ -4,7 +4,6 @@ import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 import 'package:women_safety/helper/application_bloc.dart';
 import 'package:women_safety/helper/message_dao.dart';
-import 'package:women_safety/shared/bottom.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -104,6 +103,8 @@ class _HomeScreenState extends State<HomeScreen> {
             } else if (!snapshot.hasData) {
               return const Center(child: CircularProgressIndicator());
             }
+
+            print(snapshot.data!.snapshot.child('Danger'));
 
             if (snapshot.data!.snapshot.child('Danger').value.toString() == '1') {
               if (!player!.playing) {

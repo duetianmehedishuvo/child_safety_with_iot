@@ -39,7 +39,9 @@
 
        <meta-data
            android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyDJu-xdHXPpyEE-MhyXUdwJIXRBO4pY2b8" />
+           android:value="AIzaSyBDVZ5g_EAi5cOFATE8MaB_p9uPn4MfcRQ" />
+<!--           android:value="AIzaSyBNiHkd6GHzBoTFj_SPOXvaoQjWwfQXbIE" />-->
+<!--           android:value="AIzaSyDJu-xdHXPpyEE-MhyXUdwJIXRBO4pY2b8" />-->
 <!--           android:value="AIzaSyCaCSJ0BZItSyXqBv8vpD1N4WBffJeKhLQ" />-->
 <!--           android:value="ATBBQJ5PmJW2bBPvrrpbGLahv7DrDBF04207" />-->
 <!--           android:value="AIzaSyDbZpu-fm90E51Cent17G3Vpup01Cz5_RE" />-->

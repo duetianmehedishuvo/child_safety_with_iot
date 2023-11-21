@@ -18,7 +18,7 @@ class LocationProvider with ChangeNotifier {
     if (!isFirstTime) notifyListeners();
   }
 
-  String googleApiKey = 'AIzaSyDJu-xdHXPpyEE-MhyXUdwJIXRBO4pY2b8';
+  String googleApiKey = 'AIzaSyBDVZ5g_EAi5cOFATE8MaB_p9uPn4MfcRQ';
   bool isDebugMode = true;
 
   getCurrentUserLocation() async {

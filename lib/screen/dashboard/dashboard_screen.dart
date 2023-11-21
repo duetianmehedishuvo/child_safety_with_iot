@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 import 'package:women_safety/helper/message_dao.dart';
 import 'package:women_safety/provider/location_provider.dart';
@@ -16,8 +17,29 @@ import 'package:women_safety/util/theme/app_colors.dart';
 import 'package:women_safety/util/theme/text.styles.dart';
 import 'package:women_safety/widgets/custom_button.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+
+  AudioPlayer? player;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initializePlayer();
+  }
+
+  initializePlayer()async{
+    player = AudioPlayer();
+    await player!.setLoopMode(LoopMode.all);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +74,17 @@ class DashboardScreen extends StatelessWidget {
                 snapshot.data!.snapshot.child('Location').children.elementAt(6).value.toString(),
                 snapshot.data!.snapshot.child('Location').children.elementAt(5).value.toString(),
               );
+
+              print(snapshot.data!.snapshot.child('Danger'));
+
+              if (snapshot.data!.snapshot.child('Danger').value.toString() == '1') {
+                if (!player!.playing) {
+                  player!.setAsset('assets/raw/alarm.mp3');
+                  player!.play();
+                }
+              } else {
+                player!.stop();
+              }
 
               return ListView(
                 physics: const BouncingScrollPhysics(),

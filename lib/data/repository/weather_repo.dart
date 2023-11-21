@@ -14,7 +14,7 @@ class WeatherRepo {
     Response response = Response(requestOptions: RequestOptions(path: '22222'));
     try {
       response = await dioClient.get(
-          'https://api.weatherbit.io/v2.0/current?lat=${latLng.latitude}&lon=${latLng.longitude}&key=4842238e95f84f9ba5bf04e77365bc0c');
+          'https://api.weatherbit.io/v2.0/current?lat=${latLng.latitude}&lon=${latLng.longitude}&key=27be07491a3c41c9a32880372e954477');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e), response);
@@ -25,7 +25,7 @@ class WeatherRepo {
     Response response = Response(requestOptions: RequestOptions(path: '22222'));
     try {
       response = await dioClient.get(
-          'https://api.weatherbit.io/v2.0/forecast/daily?lat=${latLng.latitude}&lon=${latLng.longitude}&key=4842238e95f84f9ba5bf04e77365bc0c');
+          'https://api.weatherbit.io/v2.0/forecast/daily?lat=${latLng.latitude}&lon=${latLng.longitude}&key=27be07491a3c41c9a32880372e954477');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e), response);
